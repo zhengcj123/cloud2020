@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.31.162:1111 #http://192.168.3.95:8848,http://192.168.3.95:8849,http://192.168.3.95:8850
+      config:
+        server-addr: 192.168.31.162:1111 #192.168.3.95:8848,192.168.3.95:8849,192.168.3.95:8850
+        file-extension: yaml
+#        group: DEV_GROUP
+#        namespace: 201fe826-5783-496f-b14d-da899ae591ca
+
+
+# dataId 的完整格式如下：
+# ${prefix}-${spring.profiles.active}.${file-extension}
+# prefix 默认为 spring.application.name
+# file-exetension 为配置内容的数据格式，可以通过配置项 spring.cloud.nacos.config.file-extension 来配置。目前只支持 properties 和 yaml 类型

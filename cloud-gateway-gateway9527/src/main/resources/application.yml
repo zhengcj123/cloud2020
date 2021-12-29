@@ -1,0 +1,44 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: cloud-gateway9527
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  #开启从注册中心动态创建路由的功能，利用微服务名进行路由
+      routes:
+#        - id: payment_routh #路由的ID，没有固定规则但要求唯一，建议配合服务名
+##          uri: http://localhost:8001   #
+#          uri: lb://CLOUD-PAYMENT-SERVICE
+#          predicates:
+#            - Path=/payment/get/**   #断言,路径相匹配的进行路由
+
+        - id: payment_routh2
+#          uri: http://localhost:8001
+          uri: lb://CLOUD-PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/lb/**,/payment/get/**   #断言,路径相匹配的进行路由
+#            - After=2020-11-09T17:51:03.684+08:00[Asia/Shanghai]
+#            - Before=2020-11-09T18:51:03.684+08:00[Asia/Shanghai]
+#            - Between=2020-11-09T17:51:03.684+08:00[Asia/Shanghai],2020-11-09T18:57:03.684+08:00[Asia/Shanghai]
+#            - Cookie=username,zcj
+#            - Header=X-Request-Id, \d+
+#            - Host=**.somehost.org,**.anotherhost.org
+#            - Query=red, gree
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka   #单机版
+  instance:
+    instance-id: ${spring.application.name}  #Eureka中展示为实例名称
+    prefer-ip-address: true  #Eureka中当鼠标移动到实例中显示ip信息提示
+
+

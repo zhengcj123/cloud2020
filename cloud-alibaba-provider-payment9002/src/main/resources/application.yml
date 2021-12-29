@@ -1,0 +1,17 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: nacos-payment-provider
+  profiles:
+#    active: info
+    active: dev
+#    active: test
+#    active: dev
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

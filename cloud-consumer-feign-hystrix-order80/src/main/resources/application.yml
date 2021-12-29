@@ -1,0 +1,17 @@
+server:
+  port: 80
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka   #单机版
+  instance:
+    instance-id: ${spring.application.name}  #Eureka中展示为实例名称
+    prefer-ip-address: true  #Eureka中当鼠标移动到实例中显示ip信息提示
+spring:
+  application:
+    name: orderFeignHystrix80
+feign:
+  hystrix:
+    enabled: true #开启feign对Hystrix的支持

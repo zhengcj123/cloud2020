@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dcsyun.springcloud.dao.PaymentDao">
+
+    <resultMap id="BaseResultMap" type="com.dcsyun.springcloud.entities.Payment">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="serial" jdbcType="VARCHAR" property="serial"/>
+    </resultMap>
+
+    <select id="selectSerialById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT * FROM payment WHERE id = #{id}
+    </select>
+
+    <!-- useGeneratedKeys：设置是否使用JDBC的getGenereatedKeys方法获取主键并赋值到keyProperty设置的领域模型属性中
+       keyProperty 用于设置getGeneratedKeys方法或selectKey子元素返回值将赋值到领域模型的哪个属性中-->
+    <!-- paramterType能够不使用全类名是因为application.yml中配置了type-aliases-package -->
+    <insert id="addPaymnet" useGeneratedKeys="true" keyProperty="id" parameterType="Payment">
+        INSERT INTO payment(serial) VALUES (#{serial})
+    </insert>
+
+</mapper>
+
